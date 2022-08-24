@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="mediaQueries.css">
+    <title>InputForm</title>
+    <style>       
+        h1{
+            position: relative;
+            left: 300px;
+            padding-bottom: 20px;
+            background-color: orangered;
+            display: inline-block;
+            padding: 6px 15px 7px 15px;
+            border: 1px solid grey;
+            border-radius: 5px;
+        }
+        #form {
+            width: 50vw;
+            margin: auto;   
+        }
+        .div{
+            margin-bottom: 20px;
+            text-align: left
+        }
+        .err{
+            color: red;
+            font-size: small;
+        }
+        #btn{
+            position: relative;
+            left: 120px;
+            background-color: grey;
+            color: white;
+            width: 120px;
+            padding: 5px;
+            border: 0.4px solid grey;
+            border-radius: 12px;
+            margin-top: 20px;
+        }
+        #btn:hover{
+            background-color: black;
+            cursor: pointer;
+        }
+        #text{
+            width: 183px;
+        }
+        #email{
+            width: 210px;
+        }
+        #url{
+            width: 200px;
+        }
+        #number{
+            width: 200px;
+        }
+        #range{
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>HTML5 Form Input Fields</h1>
+    </header>
+
+    <div>
+        <form action="" id="form">
+           <div class="div">
+            <label for="text">Type your Name : </label>
+            <input type="text" id="text" name="text" class="bar">
+            <error-output id="error" for="text" class="err"></error-output>
+           </div>
+
+           <div class="div">
+            <label for="pwd">Type your Password</label>
+            <input type="password" id="pwd" name="password" class="bar">
+            <error-output id="error4" for="pwd" class="err"></error-output>
+           </div>
+
+           <div class="div"> <label for="email">Enter E-mail  :</label>
+            <input type="email" id="email" name=email class="bar">
+            <error-output id="error2" for="email" class="err"></error-output>
+           </div>
+
+           <div class="div">
+            <label for="url">Type your URL</label>
+            <input type="url" id="url" name="url" class="bar">
+           </div>
+
+           <div class="div">
+            <label for="number">Phone number : </label>
+            <input type="number" id="number" name="number" class="bar">
+            <error-output id="error3" for="number" class="err"></error-output>
+           </div>
+
+            <div class="div">
+            <label for="date">Choose Date & Time</label>
+            <input type="datetime" id="date" name="date">
+            </div>
+
+            <div class="div">
+            <label for="range">Choose your Salary range</label>
+            <input type="range" name="range" id="range" min="20000" max="200000">
+            </div>
+
+            <button id="btn" onclick="alert('ThankYou, Form Submitted')">Submit</button>
+
+        </form>
+    </div>
+
+    <script>
+        const text = document.getElementById('text');
+        const error = document.getElementById('error');
+
+        text.addEventListener('input', ()=>{
+            let nameRegex = RegExp('^[A-Z][a-z]+$');
+            if(nameRegex.test(text.value)){
+                error.textContent = "";
+            }
+            else{
+                error.textContent = "Name is incorrect";
+            }
+        })
+        const email = document.querySelector('#email');
+        const error2 = document.querySelector('#error2')
+
+        email.addEventListener('input', ()=>{
+            let emailRegex = RegExp('^[a-z0-9]+[.]?[a-z]?[@]+[a-z]+[.]+[a-z]{2,3}[.]?[a-z]?$')
+            if(emailRegex.test(email.value)){
+                error2.textContent ="";
+            }
+            else{
+                error2.textContent = "Email is Incorrect";
+            }
+        })
+
+        const number = document.getElementById('number');
+        const error3 = document.getElementById('error3');
+
+        number.addEventListener('input', ()=>{
+            let numberRegex = RegExp('^[0-9]{2}[ ]?[0-9]{10}$')
+            if(numberRegex.test(number.value)){
+            error3.textContent =" ";
+            }
+            else{
+            error3.textContent = "Incorrect Phone number";
+        }
+        })
+
+        const pwd = document.getElementById('pwd');
+        const error4 = document.getElementById('error4')
+
+        pwd.addEventListener('input', ()=>{
+            let pwdRegex = RegExp('^[A-Za-z0-9@-_]{8,}$');
+            if(pwdRegex.test(pwd.value)){
+            error4.textContent =" ";
+        }
+            else{
+            error4.textContent = "Password format incorrect"
+        }
+        })
+    </script>
+</body>
+
+</html>
